@@ -20,13 +20,17 @@ function generateCalendar(year, month) {
     for (let j = 0; j < 7; j++) {
       if (i === 0 && j < startDay) {
         let num = lastMonthEndDayCont - startDay + j + 1;
-        calendarHtml += `<td class="is-disabled">${num}</td>`;
+          calendarHtml += `<td class="is-disabled">${num}</td>`;
       } else if (dayCount > endDate) {
         let num = dayCount - endDate;
         calendarHtml += `<td class="is-disabled">${num}</td>`;
         dayCount++;
       } else {
-        calendarHtml += `<td>${dayCount}</td>`;
+        if(month === today.getMonth() + 1 && year === today.getFullYear() && dayCount === today.getDate()) {
+          calendarHtml += `<td class="is-today">${dayCount}</td>`;
+        } else {
+          calendarHtml += `<td>${dayCount}</td>`;
+        }
         dayCount++;
       }
     }

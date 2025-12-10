@@ -11,8 +11,19 @@
   <div>
     <button onclick="history.back()">戻る</button>
   </div>
-  <div><button id="prevMonth">前の月</button></div> <div><button id="nextMonth">次の月</button></div>
+  <div class="container"><button id="prevMonth" class="button1">前の月</button><button id="nextMonth" class="button2">次の月</button></div>
   <div id="calendar"></div>
    <script src="./js/Calendar.js"></script>
+   <div>
+    <h2>タスク登録</h2>
+    <form>
+      <label for="taskDate">日付:</label>
+      <input type="date" id="taskDate" name="taskDate" required><br><br>
+      <label for="taskName">タスク名:</label>
+      <input type="text" id="taskName" name="taskName" required><br><br>
+      <label for="taskDesc">詳細:</label>
+      <textarea id="taskDesc" name="taskDesc" rows="4" cols="50"></textarea><br><br>
+      <input type="submit" value="登録">
+   </div>
 </body>
 </html>

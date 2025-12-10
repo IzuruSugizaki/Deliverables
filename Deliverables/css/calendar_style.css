@@ -43,3 +43,22 @@ td:last-child {
 td.is-disabled {
     color: #787878;
 }
+
+td.is-today {
+    background-color: #ffff99;
+}
+
+.container {
+  display: flexbox;
+    width: 100%;
+}
+
+.button1 {
+  margin-left: 20px;
+  margin-right: 90px;
+}
+
+.button2 {
+  margin-left: 180px;
+  margin-right: 20px;
+}
