@@ -63,3 +63,4 @@ document.getElementById('nextMonth').addEventListener('click', () => {
   }
   generateCalendar(year, month);
 });
+
