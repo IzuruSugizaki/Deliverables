@@ -2,13 +2,19 @@ const form = document.getElementById('form');
 const taskDate = document.getElementById('taskDate');
 const taskName = document.getElementById('taskName');
 const taskDesc = document.getElementById('taskDesc');
-let i = 0;
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   addTask();
   form.reset();
 });
+
+function reloadCalendar() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth() + 1;
+  generateCalendar(year, month);
+}
 
 function addTask() {
   const date = taskDate.value;
@@ -22,26 +28,31 @@ function addTask() {
   }
 
   const task = {
-    id: i,
+    id: Date.now(),
     date: date,
     name: name,
     desc: desc,
     completed: false
   }
-  i++;
 
   // タスクを保存するロジックをここに追加
   saveToLocalStorage(task);
 
   // カレンダーに再描画する
-  //reloadCalendar();
+  reloadCalendar();
 
   console.log('タスクが追加されました:', task);
 
 }
 
 function saveToLocalStorage(task) {
-  let tasks = JSON.stringify(task);
-  localStorage.setItem(task.id, tasks);
+  let tasks = localStorage.getItem('tasks');
+  tasks = tasks ? JSON.parse(tasks) : [];
+  tasks.push(task);
+  localStorage.setItem('tasks', JSON.stringify(tasks));
   console.log('タスクがローカルストレージに保存されました:', task);
 }
+
+     
+
+

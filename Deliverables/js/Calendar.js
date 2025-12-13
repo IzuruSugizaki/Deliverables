@@ -26,10 +26,23 @@ function generateCalendar(year, month) {
         calendarHtml += `<td class="is-disabled">${num}</td>`;
         dayCount++;
       } else {
-        if(month === today.getMonth() + 1 && year === today.getFullYear() && dayCount === today.getDate()) {
-          calendarHtml += `<td class="is-today">${dayCount}</td>`;
+        //日付文字列の作成
+        const dateStr = `${year}-${String(month).padStart(2,'0')}-${String(dayCount).padStart(2,'0')}`;
+
+        //その日のタスクを取得
+        const dayTasks = getTasksByDate(dateStr);
+
+        //今日かどうか判定
+        const isToday = (year === today.getFullYear() && month === (today.getMonth() + 1) && dayCount === today.getDate());
+
+        //class名の設定
+        let classNames = isToday ? 'is-today' : '';
+
+        //タスクがある場合はクラスを追加
+        if (dayTasks.length > 0) {
+          calendarHtml += `<td class="${classNames}"><div class="date-number">${dayCount}</div><div class="tasks-count">${dayTasks.length}件のタスク</div></td>`;
         } else {
-          calendarHtml += `<td>${dayCount}</td>`;
+          calendarHtml += `<td class="${classNames}">${dayCount}</td>`;
         }
         dayCount++;
       }
@@ -64,3 +77,8 @@ document.getElementById('nextMonth').addEventListener('click', () => {
   generateCalendar(year, month);
 });
 
+function getTasksByDate(date) {
+  let tasks = localStorage.getItem('tasks');
+  tasks = tasks ? JSON.parse(tasks) : [];
+  return tasks.filter(task => task.date === date);
+}
