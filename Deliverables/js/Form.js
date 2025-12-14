@@ -1,22 +1,30 @@
+//タスクの追加・削除を行う
+
+//task.htmlのID要素を取得
 const form = document.getElementById('form');
 const taskDate = document.getElementById('taskDate');
 const taskName = document.getElementById('taskName');
 const taskDesc = document.getElementById('taskDesc');
 
+//登録ボタンを押すとlocalstrageに追加
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   addTask();
   form.reset();
 });
 
+//カレンダーを再描画する
 function reloadCalendar() {
   const now = new Date();
   const year = now.getFullYear();
   const month = now.getMonth() + 1;
+  //Calendar.jsのカレンダーを描画する関数を呼び出す。
   generateCalendar(year, month);
 }
 
+//タスクを追加する
 function addTask() {
+  //取得したID要素の値を取り出す。
   const date = taskDate.value;
   const name = taskName.value;
   const desc = taskDesc.value;
@@ -27,6 +35,7 @@ function addTask() {
     return;
   }
 
+  //localstrageに追加するオブジェクト
   const task = {
     id: Date.now(),
     date: date,
@@ -45,6 +54,7 @@ function addTask() {
 
 }
 
+//localstrageにタスクを追加する
 function saveToLocalStorage(task) {
   let tasks = localStorage.getItem('tasks');
   tasks = tasks ? JSON.parse(tasks) : [];
