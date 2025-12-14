@@ -100,7 +100,8 @@ function showTaskDetail(date) {
   modal.style.display = 'block';
   let contentHtml = `</div class="task-item"><h2>${date}のタスク</h2><ul>`;
   tasks.forEach(task => {
-    contentHtml += `<li><strong><div class="task-name">${task.name}</div></strong><div class="task-desc">メモ：${task.desc || '説明なし'}</div></li>`;
+    contentHtml += `<li><strong><div class="task-name">${task.name}</div></strong><div class="task-desc">メモ：${task.desc || '説明なし'}</div></li>
+    <button onclick="deleteTask(${task.id})">削除</button>`;
   });
   contentHtml += '</ul><button id="close">閉じる</button></div>';
 
@@ -111,4 +112,15 @@ function showTaskDetail(date) {
       modal.style.display = 'none';
     }
 });
+}
+
+function deleteTask(taskId) {
+  let tasks = localStorage.getItem('tasks');
+  tasks = tasks ? JSON.parse(tasks) : [];
+  tasks = tasks.filter(task => task.id !== taskId);
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+  // カレンダーを再描画
+  generateCalendar(year, month);
+  // モーダルを閉じる
+  document.getElementById('taskModal').style.display = 'none';
 }
