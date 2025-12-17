@@ -1,13 +1,11 @@
 const weeks = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-const date = new Date();
-let year = date.getFullYear();
-let month = date.getMonth() + 1;
+const now_date = new Date();
+let year = now_date.getFullYear();
+let month = now_date.getMonth() + 1;
 
 // カレンダーを生成する関数
 function generateCalendar(year, month) {
-
-  //new Dateのことについて調べておく。getDayも同様に
-  const startDay = new Date(year, month - 1, 1).getDay();
+  const startDayOfWeek = new Date(year, month - 1, 1).getDay();
   const endDate = new Date(year, month, 0).getDate();
   const today = new Date();
   const lastMonthEndDayCont = new Date(year, month - 1, 0).getDate();
@@ -19,15 +17,15 @@ function generateCalendar(year, month) {
     calendarHtml += `<th>${weeks[i]}</th>`;
   } 
   calendarHtml += '</tr><tr>';
-  for (let i = 0; i < 6; i++) {
-    for (let j = 0; j < 7; j++) {
-      if (i === 0 && j < startDay) {
+  for (let i_days = 0; i_days < 6; i_days++) {
+    for (let j_week = 0; j_week < 7; j_week++) {
+      if (i_days === 0 && j_week < startDayOfWeek) {
         //ここのロジックを要理解
-        let num = lastMonthEndDayCont - startDay + j + 1;
-          calendarHtml += `<td class="is-disabled">${num}</td>`;
+        let lastMonthDays = lastMonthEndDayCont - startDayOfWeek + j_week + 1;
+          calendarHtml += `<td class="is-disabled">${lastMonthDays}</td>`;
       } else if (dayCount > endDate) {
-        let num = dayCount - endDate;
-        calendarHtml += `<td class="is-disabled">${num}</td>`;
+        let nextMonthDays = dayCount - endDate;
+        calendarHtml += `<td class="is-disabled">${nextMonthDays}</td>`;
         dayCount++;
         //ここまでがカレンダーの余白の生成
       } else {
@@ -87,8 +85,8 @@ document.getElementById('nextMonth').addEventListener('click', () => {
 
 //ローカルストレージから要素を取り出す。
 function getTasksByDate(date) {
-  let tasks = localStorage.getItem('tasks');
-  tasks = tasks ? JSON.parse(tasks) : [];
+  let user_tasks = localStorage.getItem('tasks');
+  tasks = user_tasks ? JSON.parse(user_tasks) : [];
   return tasks.filter(task => task.date === date);
 }
 
@@ -101,7 +99,7 @@ function showTaskDetail(date) {
   let contentHtml = `</div class="task-item"><h2>${date}のタスク</h2><ul>`;
   tasks.forEach(task => {
     contentHtml += `<li><strong><div class="task-name">${task.name}</div></strong><div class="task-desc">メモ：${task.desc || '説明なし'}</div></li>
-    <button onclick="deleteTask(${task.id})">削除</button>`;
+    <button onclick="deleteUserTask(${task.id})">削除</button>`;
   });
   contentHtml += '</ul><button id="close">閉じる</button></div>';
 
@@ -114,11 +112,12 @@ function showTaskDetail(date) {
 });
 }
 
-function deleteTask(taskId) {
-  let tasks = localStorage.getItem('tasks');
-  tasks = tasks ? JSON.parse(tasks) : [];
-  tasks = tasks.filter(task => task.id !== taskId);
-  localStorage.setItem('tasks', JSON.stringify(tasks));
+function deleteUserTask(taskId) {
+  let delete_tasks = localStorage.getItem('tasks');
+  task = delete_tasks ? JSON.parse(delete_tasks) : [];
+  // 指定されたIDのタスクを削除(ここは理解すること)
+  task = task.filter(task => task.id !== taskId);
+  localStorage.setItem('tasks', JSON.stringify(task));
   // カレンダーを再描画
   generateCalendar(year, month);
   // モーダルを閉じる
