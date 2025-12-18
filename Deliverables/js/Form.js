@@ -1,41 +1,27 @@
-//タスクの追加・削除を行う
+//フォームから情報を取得してローカルストレージに保存する。
 
-//task.htmlのID要素を取得
 const form = document.getElementById('form');
 const taskDate = document.getElementById('taskDate');
 const taskName = document.getElementById('taskName');
 const taskDesc = document.getElementById('taskDesc');
 
-//登録ボタンを押すとlocalstrageに追加
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   addTask();
   form.reset();
 });
 
-//カレンダーを再描画する
-function reloadCalendar() {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = now.getMonth() + 1;
-  //Calendar.jsのカレンダーを描画する関数を呼び出す。
-  generateCalendar(year, month);
-}
-
-//タスクを追加する
 function addTask() {
-  //取得したID要素の値を取り出す。
+
   const taskDateValue = taskDate.value;
   const taskNameValue = taskName.value;
   const taskDescValue = taskDesc.value;
-
 
   if(!taskDateValue || !taskNameValue) {
     alert("日付とタスク名は必須です。");
     return;
   }
 
-  //localstrageに追加するオブジェクト
   const userTask = {
     id: Date.now(),
     date: taskDateValue,
@@ -44,18 +30,15 @@ function addTask() {
     completed: false
   }
 
-  // タスクを保存するロジックをここに追加
-  saveToLocalStorage(userTask);
+  addToLocalStorage(userTask);
 
-  // カレンダーに再描画する
   reloadCalendar();
 
   console.log('タスクが追加されました:', userTask);
 
 }
 
-//localstrageにタスクを追加する
-function saveToLocalStorage(userTask) {
+function addToLocalStorage(userTask) {
   let tasks = localStorage.getItem('tasks');
   const arrayTasks = tasks ? JSON.parse(tasks) : [];
   arrayTasks.push(userTask);
@@ -63,6 +46,11 @@ function saveToLocalStorage(userTask) {
   console.log('タスクがローカルストレージに保存されました:', userTask);
 }
 
-     
+function reloadCalendar() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth() + 1;
+  generateCalendar(year, month);
+} 
 
 
