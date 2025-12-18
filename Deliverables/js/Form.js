@@ -25,12 +25,12 @@ function reloadCalendar() {
 //タスクを追加する
 function addTask() {
   //取得したID要素の値を取り出す。
-  const taskdate = taskDate.value;
-  const taskname = taskName.value;
-  const taskdesc = taskDesc.value;
+  const taskDateValue = taskDate.value;
+  const taskNameValue = taskName.value;
+  const taskDescValue = taskDesc.value;
 
 
-  if(!taskdate || !taskname) {
+  if(!taskDateValue || !taskNameValue) {
     alert("日付とタスク名は必須です。");
     return;
   }
@@ -38,9 +38,9 @@ function addTask() {
   //localstrageに追加するオブジェクト
   const userTask = {
     id: Date.now(),
-    date: taskdate,
-    name: taskname,
-    desc: taskdesc,
+    date: taskDateValue,
+    name: taskNameValue,
+    desc: taskDescValue,
     completed: false
   }
 
@@ -57,7 +57,7 @@ function addTask() {
 //localstrageにタスクを追加する
 function saveToLocalStorage(userTask) {
   let tasks = localStorage.getItem('tasks');
-  arrayTasks = tasks ? JSON.parse(tasks) : [];
+  const arrayTasks = tasks ? JSON.parse(tasks) : [];
   arrayTasks.push(userTask);
   localStorage.setItem('tasks', JSON.stringify(arrayTasks));
   console.log('タスクがローカルストレージに保存されました:', userTask);

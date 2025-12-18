@@ -1,7 +1,7 @@
 const weeks = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-const now_date = new Date();
-let year = now_date.getFullYear();
-let month = now_date.getMonth() + 1;
+const nowDate = new Date();
+let year = nowDate.getFullYear();
+let month = nowDate.getMonth() + 1;
 
 // カレンダーを生成する関数
 function generateCalendar(year, month) {
@@ -17,11 +17,11 @@ function generateCalendar(year, month) {
     calendarHtml += `<th>${weeks[i]}</th>`;
   } 
   calendarHtml += '</tr><tr>';
-  for (let i_days = 0; i_days < 6; i_days++) {
-    for (let j_week = 0; j_week < 7; j_week++) {
-      if (i_days === 0 && j_week < startDayOfWeek) {
+  for (let iDays = 0; iDays < 6; iDays++) {
+    for (let jWeek = 0; jWeek < 7; jWeek++) {
+      if (iDays === 0 && jWeek < startDayOfWeek) {
         //ここのロジックを要理解
-        let lastMonthDays = lastMonthEndDayCont - startDayOfWeek + j_week + 1;
+        let lastMonthDays = lastMonthEndDayCont - startDayOfWeek + jWeek + 1;
           calendarHtml += `<td class="is-disabled">${lastMonthDays}</td>`;
       } else if (dayCount > endDate) {
         let nextMonthDays = dayCount - endDate;
@@ -86,7 +86,7 @@ document.getElementById('nextMonth').addEventListener('click', () => {
 //ローカルストレージから要素を取り出す。
 function getTasksByDate(date) {
   let userTasks = localStorage.getItem('tasks');
-  arrayTasks = userTasks ? JSON.parse(userTasks) : [];
+  const arrayTasks = userTasks ? JSON.parse(userTasks) : [];
   return arrayTasks.filter(task => task.date === date);
 }
 
@@ -113,11 +113,11 @@ function showTaskDetail(date) {
 }
 
 function deleteUserTask(taskId) {
-  let delete_tasks = localStorage.getItem('tasks');
-  task = delete_tasks ? JSON.parse(delete_tasks) : [];
+  let deleteTasks = localStorage.getItem('tasks');
+  let allTasks = deleteTasks ? JSON.parse(deleteTasks) : [];
   // 指定されたIDのタスクを削除(ここは理解すること)
-  task = task.filter(task => task.id !== taskId);
-  localStorage.setItem('tasks', JSON.stringify(task));
+  allTasks = allTasks.filter(task => task.id !== taskId);
+  localStorage.setItem('tasks', JSON.stringify(allTasks));
   // カレンダーを再描画
   generateCalendar(year, month);
   // モーダルを閉じる
