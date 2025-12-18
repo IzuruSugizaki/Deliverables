@@ -85,9 +85,9 @@ document.getElementById('nextMonth').addEventListener('click', () => {
 
 //ローカルストレージから要素を取り出す。
 function getTasksByDate(date) {
-  let user_tasks = localStorage.getItem('tasks');
-  tasks = user_tasks ? JSON.parse(user_tasks) : [];
-  return tasks.filter(task => task.date === date);
+  let userTasks = localStorage.getItem('tasks');
+  arrayTasks = userTasks ? JSON.parse(userTasks) : [];
+  return arrayTasks.filter(task => task.date === date);
 }
 
 
