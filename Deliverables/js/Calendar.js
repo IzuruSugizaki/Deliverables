@@ -13,12 +13,15 @@ function generateCalendar(year, month) {
   //カレンダーをtable要素で生成しcalendarHtmlに追加していく。
   let calendarHtml = `<table><tr><th colspan="7">${year}年 ${month}月</th></tr><tr>`;
 
+  const WeeksInCalendar = 6;
+  const DaysInWeek = 7;
+
   for (let i = 0; i < weeks.length; i++) {
     calendarHtml += `<th>${weeks[i]}</th>`;
   } 
   calendarHtml += '</tr><tr>';
-  for (let iDays = 0; iDays < 6; iDays++) {
-    for (let jWeek = 0; jWeek < 7; jWeek++) {
+  for (let iDays = 0; iDays < WeeksInCalendar; iDays++) {
+    for (let jWeek = 0; jWeek < DaysInWeek; jWeek++) {
       if (iDays === 0 && jWeek < startDayOfWeek) {
         //ここのロジックを要理解
         let lastMonthDays = lastMonthEndDayCont - startDayOfWeek + jWeek + 1;
