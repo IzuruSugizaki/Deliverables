@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/calendar_style.css">
+    <title>タスク一覧</title>
+</head>
+<body>
+  <h1>タスク一覧</h1>
+  <div>
+    <button onclick="location.href='index.html'">戻る</button>
+  </div>
+  <div class="container"><button id="prevMonth" class="button1">前の月</button><button id="nextMonth" class="button2">次の月</button></div>
+  <div id="calendar"></div>
+   <div>
+    <h2>タスク登録</h2>
+    <form id="form">
+      <label for="taskDate">日付:</label>
+      <input type="date" id="taskDate" name="taskDate" required><br><br>
+      <label for="taskName">タスク名:</label>
+      <input type="text" id="taskName" name="taskName" required><br><br>
+      <label for="taskDesc">詳細:</label>
+      <textarea id="taskDesc" name="taskDesc" rows="4" cols="50"></textarea><br><br>
+      <input type="submit" value="登録">
+    </form>
+   </div>
+  <div id="taskModal" class="modal">
+    <div id="modalContent" class="modalContent"></div>
+  </div>
+   <script src="./js/Form.js"></script>
+    <script src="./js/modal.js"></script>
+    <script src="./js/localstrage.js"></script>
+    <script src="./js/Calendar.js"></script>
+</body>
+</html>

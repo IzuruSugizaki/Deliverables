@@ -1,0 +1,40 @@
+body {
+  background-color: #ffffff;
+}
+h1 {
+    font-size: 2em;
+    color: #00b3ff;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1em;
+    color: #333333;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-style: inherit;
+}
+
+h2 {
+    font-size: 1.5em;
+    color: #FF8000;
+    text-align: left;
+    margin-bottom: 18px;
+}
+
+ul {
+  list-style-position: inside;
+}
+
+li {
+  border-bottom: 1px dashed #333;
+  padding: 5px 0;
+}
+
+.container {
+  display: flexbox;
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}

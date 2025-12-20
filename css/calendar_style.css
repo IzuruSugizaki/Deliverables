@@ -1,0 +1,151 @@
+button {
+  background-color: #03ffdd85;
+  color: #000000;
+  border: none;
+  padding: 5px 10px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-weight: bold;
+}
+
+td {
+    border: 2px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    border: 2px solid #ddd;
+    padding: 10px;
+    background-color: #f2f2f2;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+td:first-child {
+    color: #ff0000;
+}
+
+td:last-child {
+    color: #0011ff;
+}
+td.is-disabled {
+    color: #787878;
+}
+
+td.is-today {
+    background-color: #ffff99;
+}
+
+.container {
+  display: flexbox;
+    width: 100%;
+}
+
+.button1 {
+  margin-left: 20px;
+  margin-right: 90px;
+}
+
+.button2 {
+  margin-left: 180px;
+  margin-right: 20px;
+}
+
+.tasks-count {
+    color: #000000;
+    border: 2px solid #787878;
+    border-radius: 10px;
+    font-size: 15px;
+    padding: 2px;
+}
+
+/* モーダル */
+.modal {
+  display: none; /* 最初は非表示 */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 半透明の黒背景 */
+}
+
+.modalContent {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 30px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #000;
+}
+
+#modalDate {
+  color: #00b3ff;
+  margin-bottom: 20px;
+}
+
+.task-item {
+  padding: 15px;
+  margin: 10px 0;
+  background-color: #f9f9f9;
+  border-left: 4px solid #0011ff;
+  border-radius: 5px;
+}
+
+.task-name {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.task-desc {
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.task-date {
+  font-size: 0.9em;
+  color: #999;
+}
+
+.delete-btn {
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.delete-btn:hover {
+  background-color: #cc0000;
+}
