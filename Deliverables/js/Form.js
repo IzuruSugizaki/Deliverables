@@ -38,19 +38,11 @@ function addTask() {
 
 }
 
-function addToLocalStorage(userTask) {
-  let tasks = localStorage.getItem('tasks');
-  const arrayTasks = tasks ? JSON.parse(tasks) : [];
-  arrayTasks.push(userTask);
-  localStorage.setItem('tasks', JSON.stringify(arrayTasks));
-  console.log('タスクがローカルストレージに保存されました:', userTask);
-}
-
 function reloadCalendar() {
   const now = new Date();
   const year = now.getFullYear();
   const month = now.getMonth() + 1;
   generateCalendar(year, month);
-} 
+}
 
 
